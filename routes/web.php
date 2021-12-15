@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/hello', function () {
+    return view('hello');
+});
+
+
+Route::get('/profile/{id}', function (int $id) {
+    $user = User::findOrFail($id);
+    return view('profile')->with([ 'user' => $user ]);
 });
